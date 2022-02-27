@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace eshop_webapi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        //private static readonly string[] Summaries = new[]
+        //{
+        //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        //};
 
         private readonly ILogger<WeatherForecastController> _logger;
 
@@ -23,17 +23,52 @@ namespace eshop_webapi.Controllers
             _logger = logger;
         }
 
+        //[HttpGet]
+        //public IEnumerable<WeatherForecast> Get()
+        //{
+        //    var rng = new Random();
+        //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        //    {
+        //        Date = DateTime.Now.AddDays(index),
+        //        TemperatureC = rng.Next(-20, 55),
+        //        Summary = Summaries[rng.Next(Summaries.Length)]
+        //    })
+        //    .ToArray();
+        //}
+
+        // GET api/values
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public ActionResult<IEnumerable<string>> Get()
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return new string[] { "test", "test2" };
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public ActionResult<string> Get(int id)
+        {
+            return "value " + id;
+        }
+
+        // POST api/values
+        [HttpPost]
+        public string Post(string name)
+        {
+            return "Hello " + name;
+        }
+
+        // PUT api/values/5
+        [HttpPut("{id}")]
+        public string Put(int id, string name)
+        {
+            return name + " " + id;
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public string Delete(int id)
+        {
+            return id.ToString();
         }
     }
 }
