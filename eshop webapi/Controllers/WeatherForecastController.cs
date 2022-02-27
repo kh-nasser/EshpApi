@@ -12,11 +12,11 @@ namespace eshop_webapi.Controllers
     [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private EshopApi_DBContext db;
-        public WeatherForecastController(EshopApi_DBContext db)
-        {
-            this.db = db;
-        }
+        //private EshopApi_DBContext db;
+        //public WeatherForecastController(EshopApi_DBContext db)
+        //{
+        //    this.db = db;
+        //}
 
         //private static readonly string[] Summaries = new[]
         //{
