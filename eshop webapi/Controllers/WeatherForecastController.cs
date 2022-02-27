@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using eshop_webapi.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,12 @@ namespace eshop_webapi.Controllers
     [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        private EshopApi_DBContext db;
+        public WeatherForecastController(EshopApi_DBContext db)
+        {
+            this.db = db;
+        }
+
         //private static readonly string[] Summaries = new[]
         //{
         //    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
