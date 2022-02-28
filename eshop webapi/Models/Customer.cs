@@ -14,7 +14,7 @@ namespace eshop_webapi.Models
         }
 
         public int CustomerId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Enter first name")]
         [StringLength(50)]
         public string FirstName { get; set; }
         [Required]
