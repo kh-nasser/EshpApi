@@ -15,5 +15,36 @@ namespace eshop_webapi.Controllers
             _context = context;
         }
 
+
+        [HttpGet]
+        public IActionResult GetCustomer()
+        {
+            return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetCustomer([FromRoute] int id)
+        {
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult PostCustomer([FromBody] Customer customer)
+        {
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult PutCustomer([FromRoute] int id, [FromBody] Customer customer)
+        {
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCustomer([FromRoute] int id)
+        {
+            return Ok();
+        }
+
     }
 }
