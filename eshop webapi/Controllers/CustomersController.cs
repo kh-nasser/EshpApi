@@ -41,8 +41,9 @@ namespace eshop_webapi.Controllers
                 var customer = await _context.Customers.SingleOrDefaultAsync(c => c.CustomerId == id);
                 return Ok(customer);
             }
-            else { 
-                return NotFound();  
+            else
+            {
+                return NotFound();
             }
         }
 
@@ -54,6 +55,11 @@ namespace eshop_webapi.Controllers
         [HttpPost]
         public async Task<IActionResult> PostCustomer([FromBody] Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
