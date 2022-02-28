@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using eshop_webapi.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eshop_webapi.Controllers
@@ -7,5 +8,12 @@ namespace eshop_webapi.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
+        private EshopApi_DBContext _context;
+
+        public CustomersController(EshopApi_DBContext context)
+        {
+            _context = context;
+        }
+
     }
 }
