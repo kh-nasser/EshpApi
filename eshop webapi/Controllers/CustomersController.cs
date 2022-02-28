@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace eshop_webapi.Controllers
@@ -22,7 +23,14 @@ namespace eshop_webapi.Controllers
         [HttpGet]
         public IActionResult GetCustomer()
         {
-            return new ObjectResult(_context.Customers);
+            var result = new ObjectResult(_context.Customers)
+            {
+                StatusCode = (int)HttpStatusCode.OK
+            };
+            Request.HttpContext.Response.Headers.Add("X-Count", _context.Customers.Count().ToString());
+            Request.HttpContext.Response.Headers.Add("X-Name", "Name");
+
+            return result;
         }
 
         [HttpGet("{id}")]
