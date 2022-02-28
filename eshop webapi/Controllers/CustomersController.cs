@@ -36,8 +36,19 @@ namespace eshop_webapi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCustomer([FromRoute] int id)
         {
-            var customer = await _context.Customers.SingleOrDefaultAsync(c => c.CustomerId == id);
-            return Ok(customer);
+            if (CustomerExists(id))
+            {
+                var customer = await _context.Customers.SingleOrDefaultAsync(c => c.CustomerId == id);
+                return Ok(customer);
+            }
+            else { 
+                return NotFound();  
+            }
+        }
+
+        private bool CustomerExists(int id)
+        {
+            return _context.Customers.Any(c => c.CustomerId == id);
         }
 
         [HttpPost]
