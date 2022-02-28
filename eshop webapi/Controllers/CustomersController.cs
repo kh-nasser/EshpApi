@@ -1,6 +1,9 @@
 ﻿using eshop_webapi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace eshop_webapi.Controllers
 {
@@ -19,30 +22,38 @@ namespace eshop_webapi.Controllers
         [HttpGet]
         public IActionResult GetCustomer()
         {
-            return Ok();
+            return new ObjectResult(_context.Customers);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetCustomer([FromRoute] int id)
+        public async Task<IActionResult> GetCustomer([FromRoute] int id)
         {
-            return Ok();
+            var customer = await _context.Customers.SingleOrDefaultAsync(c => c.CustomerId == id);
+            return Ok(customer);
         }
 
         [HttpPost]
-        public IActionResult PostCustomer([FromBody] Customer customer)
+        public async Task<IActionResult> PostCustomer([FromBody] Customer customer)
         {
-            return Ok();
+            _context.Customers.Add(customer);
+            await _context.SaveChangesAsync();
+            return CreatedAtAction("GetCustomer", new { id = customer.CustomerId }, customer);
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutCustomer([FromRoute] int id, [FromBody] Customer customer)
+        public async Task<IActionResult> PutCustomer([FromRoute] int id, [FromBody] Customer customer)
         {
-            return Ok();
+            _context.Entry(customer).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return Ok(customer);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteCustomer([FromRoute] int id)
+        public async Task<IActionResult> DeleteCustomer([FromRoute] int id)
         {
+            var customer = await _context.FindAsync<Customer>(id);
+            _context.Remove(customer);
+            await _context.SaveChangesAsync();
             return Ok();
         }
 
