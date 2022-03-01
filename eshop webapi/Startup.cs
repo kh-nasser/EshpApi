@@ -1,4 +1,6 @@
+using eshop_webapi.Contracts;
 using eshop_webapi.Models;
+using eshop_webapi.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +34,9 @@ namespace eshop_webapi
             {
                 options.UseSqlServer("Data Source=.; Initial Catalog=EshopApi_DB;Integrated Security=True;");
             });
+
+            //define <ICustomerRepository> and <CustomerRepository> dependency
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
