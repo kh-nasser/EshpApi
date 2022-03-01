@@ -63,7 +63,7 @@ namespace eshop_webapi.Controllers
                 return BadRequest();
             }
 
-            await _productRepository.Update(product)
+            await _productRepository.Update(product);
 
             return NoContent();
         }
