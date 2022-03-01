@@ -40,6 +40,9 @@ namespace eshop_webapi
             services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ISalesPersonsRepository, SalesPersonsRepository>();
+
+            //enable data-caching
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +61,9 @@ namespace eshop_webapi
             {
                 endpoints.MapControllers();
             });
+
+            //user data-caching
+            app.UseResponseCaching();
         }
     }
 }

@@ -22,6 +22,7 @@ namespace eshop_webapi.Controllers
 
 
         [HttpGet]
+        [ResponseCache(Duration = 60)]//set data-caching with 60 second duration
         public IActionResult GetCustomer()
         {
             var result = new ObjectResult(_customerRepository.GetAll())
