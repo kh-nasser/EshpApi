@@ -1,6 +1,7 @@
 using eshop_webapi.Contracts;
 using eshop_webapi.Models;
 using eshop_webapi.Repositories;
+using EshopApi.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,8 @@ namespace eshop_webapi
 
             //define <ICustomerRepository> and <CustomerRepository> dependency
             services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ISalesPersonsRepository, SalesPersonsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

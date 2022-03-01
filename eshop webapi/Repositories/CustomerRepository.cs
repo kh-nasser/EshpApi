@@ -9,7 +9,7 @@ namespace eshop_webapi.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
-        EshopApi_DBContext _dbContext;
+        private EshopApi_DBContext _dbContext;
         public CustomerRepository(EshopApi_DBContext dbContext)
         {
             _dbContext = dbContext;
