@@ -13,5 +13,6 @@ namespace eshop_webapi.Contracts
         Task<Customer> Update(Customer customer);
         Task<Customer> Remove(int id);
         Task<bool> IsExist(int id);
+        Task<int> CountCustomer();
     }
 }

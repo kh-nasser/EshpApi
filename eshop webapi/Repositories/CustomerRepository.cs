@@ -2,6 +2,7 @@
 using eshop_webapi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace eshop_webapi.Repositories
@@ -20,6 +21,11 @@ namespace eshop_webapi.Repositories
             return customer;
         }
 
+        public async Task<int> CountCustomer()
+        {
+            return await _dbContext.Customers.CountAsync();
+        }
+
         public async Task<Customer> Find(int id)
         {
             return await _dbContext.Customers.Include(c => c.Orders).SingleOrDefaultAsync(c => c.CustomerId == id);
@@ -27,7 +33,7 @@ namespace eshop_webapi.Repositories
 
         public IEnumerable<Customer> GetAll()
         {
-            return _dbContext.Customers;
+            return _dbContext.Customers.ToList();
         }
 
         public async Task<bool> IsExist(int id)
