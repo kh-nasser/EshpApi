@@ -26,9 +26,9 @@ namespace eshop_webapi.Controllers
         {
             var result = new ObjectResult(_customerRepository.GetAll())
             {
-                StatusCode = (int)HttpStatusCode.OK
+                StatusCode = (int) HttpStatusCode.OK
             };
-            Request.HttpContext.Response.Headers.Add("X-Count", _customerRepository.CountCustomer().ToString());
+            Request.HttpContext.Response.Headers.Add("X-Count", _customerRepository.CountCustomer().Result.ToString());
             Request.HttpContext.Response.Headers.Add("X-Name", "Name");
 
             return result;
