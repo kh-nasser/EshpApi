@@ -20,14 +20,13 @@ namespace eshop_webapi.Controllers
             _customerRepository = customerRepository;
         }
 
-
         [HttpGet]
         [ResponseCache(Duration = 60)]//set data-caching with 60 second duration
         public IActionResult GetCustomer()
         {
             var result = new ObjectResult(_customerRepository.GetAll())
             {
-                StatusCode = (int) HttpStatusCode.OK
+                StatusCode = (int)HttpStatusCode.OK
             };
             Request.HttpContext.Response.Headers.Add("X-Count", _customerRepository.CountCustomer().Result.ToString());
             Request.HttpContext.Response.Headers.Add("X-Name", "Name");
