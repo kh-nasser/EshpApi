@@ -11,16 +11,19 @@ namespace WebClient.Controllers
 {
     public class HomeController : Controller
     {
+        private ICustomerRepository _customerRepository;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger,ICustomerRepository customerRepository)
         {
             _logger = logger;
+            _customerRepository = customerRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_customerRepository.GetAllCustomer());
         }
 
         public IActionResult Privacy()
