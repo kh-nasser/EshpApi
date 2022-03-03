@@ -15,26 +15,48 @@ namespace WebClient.Controllers
         private readonly ILogger<HomeController> _logger;
 
 
-        public HomeController(ILogger<HomeController> logger,ICustomerRepository customerRepository)
+        public HomeController(ILogger<HomeController> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
             _customerRepository = customerRepository;
         }
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Index()
         {
             return View(_customerRepository.GetAllCustomer());
         }
 
-        public IActionResult Privacy()
+        public IActionResult Create()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult Create(Customer customer)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            _customerRepository.AddCustomer(customer);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var customer = _customerRepository.GetCustomerById(id);
+            return View(customer);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Customer customer)
+        {
+            _customerRepository.UpdateCustomer(customer);
+            return RedirectToAction("Index");
+
+        }
+
+        public IActionResult Delete(int id)
+        {
+            _customerRepository.DeleteCustomer(id);
+            return RedirectToAction("index");
         }
     }
 }

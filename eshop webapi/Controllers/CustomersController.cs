@@ -3,6 +3,7 @@ using eshop_webapi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -68,7 +69,7 @@ namespace eshop_webapi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer([FromRoute] int id, [FromBody] Customer customer)
         {
-            await _customerRepository.Add(customer);
+            await _customerRepository.Update(customer);
             return Ok(customer);
         }
 
@@ -78,6 +79,5 @@ namespace eshop_webapi.Controllers
             await _customerRepository.Remove(id);
             return Ok();
         }
-
     }
 }
