@@ -22,7 +22,10 @@ namespace eshop_webapi.Controllers
         {
             _customerRepository = customerRepository;
         }
-
+        /// <summary>
+        ///  return all customers
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ResponseCache(Duration = 60)]//set data-caching with 60 second duration
         public IActionResult GetCustomer()
@@ -36,7 +39,7 @@ namespace eshop_webapi.Controllers
 
             return result;
         }
-
+        ///
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCustomer([FromRoute] int id)
         {
