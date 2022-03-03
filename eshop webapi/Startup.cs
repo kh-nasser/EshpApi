@@ -33,6 +33,13 @@ namespace eshop_webapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(swagger =>
+            {
+                swagger.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "swagger doc"
+                });
+            });
             services.AddControllers();
 
             services.AddDbContext<EshopApi_DBContext>(options =>
@@ -57,12 +64,12 @@ namespace eshop_webapi
                     options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
                     {
                         ValidateIssuer = true,//validate token over server
-                        ValidateAudience = false, //validate token over client
-                        ValidateLifetime = true, //key will expire
-                        ValidateIssuerSigningKey = true,//validate token, key , tokne
-                        ValidIssuer = "http://localhost:3962", //server uri: valid auth server 
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authnetication"))//encription key
-                    };
+                            ValidateAudience = false, //validate token over client
+                            ValidateLifetime = true, //key will expire
+                            ValidateIssuerSigningKey = true,//validate token, key , tokne
+                            ValidIssuer = "http://localhost:3962", //server uri: valid auth server 
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authnetication"))//encription key
+                        };
                 });
             //IdentityModelEventSource.ShowPII = true;//remove in deploy
 
@@ -73,7 +80,7 @@ namespace eshop_webapi
                 {
                     builder
                     .SetIsOriginAllowed(origin => true) // allow any origin
-                    //.AllowAnyOrigin()
+                                                        //.AllowAnyOrigin()
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials()
@@ -93,6 +100,11 @@ namespace eshop_webapi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "swager");
+            });
 
             app.UseEndpoints(endpoints =>
             {
