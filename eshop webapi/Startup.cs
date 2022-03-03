@@ -60,7 +60,7 @@ namespace eshop_webapi
                         ValidateAudience = false, //validate token over client
                         ValidateLifetime = true, //key will expire
                         ValidateIssuerSigningKey = true,//validate token, key , tokne
-                        ValidIssuer = "http://localhost:3962", //valid auth server
+                        ValidIssuer = "http://localhost:3962", //server uri: valid auth server 
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authnetication"))//encription key
                     };
                 });

@@ -44,9 +44,9 @@ namespace eshop_webapi.Controllers
                 );
 
             //create token
-            var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOption);
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenOption);
 
-            return Ok(new { tokenString });
+            return Ok(new { token });
         }
     }
 }

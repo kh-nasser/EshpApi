@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace WebClient.Models
@@ -9,14 +10,15 @@ namespace WebClient.Models
     {
         private string apiUrl = "http://localhost:3962/api/customers";
         private HttpClient _client;
-
         public CustomerRepository()
         {
             _client = new HttpClient();
         }
 
-        public List<Customer> GetAllCustomer()
+        public List<Customer> GetAllCustomer(string token)
         {
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            
             var result = _client.GetStringAsync(apiUrl).Result;
             List<Customer> list = JsonConvert.DeserializeObject<List<Customer>>(result);
             return list;
@@ -29,6 +31,8 @@ namespace WebClient.Models
 
             return customer;
         }
+
+
 
         public HttpResponseMessage AddCustomer(Customer customer)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,11 +10,11 @@ using WebClient.Models;
 
 namespace WebClient.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private ICustomerRepository _customerRepository;
         private readonly ILogger<HomeController> _logger;
-
 
         public HomeController(ILogger<HomeController> logger, ICustomerRepository customerRepository)
         {
@@ -24,7 +25,8 @@ namespace WebClient.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Index()
         {
-            return View(_customerRepository.GetAllCustomer());
+            string token = User.FindFirst("AccessToken").Value;
+            return View(_customerRepository.GetAllCustomer(token));
         }
 
         public IActionResult Create()
