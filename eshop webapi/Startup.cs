@@ -2,6 +2,7 @@ using eshop_webapi.Contracts;
 using eshop_webapi.Models;
 using eshop_webapi.Repositories;
 using EshopApi.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace eshop_webapi
@@ -45,6 +49,37 @@ namespace eshop_webapi
             services.AddResponseCaching();
             //enable memory-cache
             services.AddMemoryCache();
+
+            //JWT
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    {
+                        ValidateIssuer = true,//validate token over server
+                        ValidateAudience = false, //validate token over client
+                        ValidateLifetime = true, //key will expire
+                        ValidateIssuerSigningKey = true,//validate token, key , tokne
+                        ValidIssuer = "http://localhost:3962", //valid auth server
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authnetication"))//encription key
+                    };
+                });
+            //IdentityModelEventSource.ShowPII = true;//remove in deploy
+
+            //allow other application to use auth
+            services.AddCors(options =>
+            {
+                options.AddPolicy("EnableCors", builder =>
+                {
+                    builder
+                    .SetIsOriginAllowed(origin => true) // allow any origin
+                    //.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .Build();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +98,10 @@ namespace eshop_webapi
             {
                 endpoints.MapControllers();
             });
+
+            //define middleware
+            app.UseCors("EnableCors");
+            app.UseAuthentication();
 
             //user data-caching
             app.UseResponseCaching();
