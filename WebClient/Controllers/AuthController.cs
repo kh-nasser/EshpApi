@@ -31,14 +31,16 @@ namespace WebClient.Controllers
             }
 
             var _client = _httpClientFactory.CreateClient("EshopCLient");
+
             var jsonBody = JsonConvert.SerializeObject(login);
             var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
             var response = _client.PostAsync("/api/auth/login", content).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                var responseJson = response.Content.ReadAsStringAsync().Result;
-                var token = JsonConvert.DeserializeObject<TokenModel>(responseJson);
+                var token = response.Content.ReadAsAsync<TokenModel>().Result;
+                //var responseJson = response.Content.ReadAsStringAsync().Result;
+                //var token = JsonConvert.DeserializeObject<TokenModel>(responseJson);
 
                 var claims = new List<Claim>()
                 {

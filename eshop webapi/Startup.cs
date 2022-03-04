@@ -99,23 +99,22 @@ namespace eshop_webapi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-
-            app.UseAuthorization();
-
             app.UseSwagger();
             app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "swager");
             });
 
+           
+            //define middleware
+            app.UseCors("EnableCors");
+            //app.UseHttpsRedirection();
+            app.UseAuthentication();
+            app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            //define middleware
-            app.UseCors("EnableCors");
-            app.UseAuthentication();
 
             //user data-caching
             app.UseResponseCaching();

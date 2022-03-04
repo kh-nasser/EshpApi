@@ -32,11 +32,12 @@ namespace WebClient
             {
                 client.BaseAddress = new Uri("http://localhost:3962");//server uri
             });
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/Auth/Login";
-                    options.LogoutPath = "/Auth/SingOut";
+                    options.LogoutPath = "/Auth/SignOut";
                     options.Cookie.Name = "Auth.Coo";
                 });
 
@@ -54,6 +55,7 @@ namespace WebClient
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();

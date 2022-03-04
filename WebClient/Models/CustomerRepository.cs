@@ -32,8 +32,6 @@ namespace WebClient.Models
             return customer;
         }
 
-
-
         public HttpResponseMessage AddCustomer(Customer customer)
         {
             string jsonCustomer = JsonConvert.SerializeObject(customer);
