@@ -9,6 +9,7 @@ namespace Polymorphism
 {
     public class EmployeeBis
     {
-        public List<Employee> GetEmployees() => new List<Employee> { new Employee(), new Contractor() };
+        //public List<Employee> GetEmployees() => new List<Employee> { new Employee(), new Contractor() };
+        public virtual List<Employee> GetMockEmployees() => throw new NotImplementedException();
     }
 }

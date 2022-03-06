@@ -6,6 +6,8 @@ namespace PolymorphismTests
     [TestClass]
     public class UnitTestPolymorphism
     {
+
+
         [TestMethod]
         public void CalculateWeeklySalaryForEmployeeTest_70wage55hoursReturn2800DOllars() {
             //arrange
