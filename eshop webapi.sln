@@ -9,13 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShopApi.Test", "EShopApi.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "WebClient\WebClient.csproj", "{4EBC1FA3-A0B9-40D5-BAAE-9F1FDA12EC7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolymorphismConsole", "Polymorphism\PolymorphismConsole.csproj", "{4A4ECE9A-B782-4F63-8611-8F3F5C84DA4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolymorphismConsole", "Polymorphism\PolymorphismConsole.csproj", "{4A4ECE9A-B782-4F63-8611-8F3F5C84DA4D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "eshop", "eshop", "{621ABA4C-EDD2-4826-9E33-04343A2ED62B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Polymorphism", "Polymorphism", "{0B79D59E-A32F-4E46-A6C4-3E392FDE9E0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolymorphismTests", "PolymorphismTests\PolymorphismTests.csproj", "{8F2078C5-4B93-48BC-81E0-DA4AFEF46402}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolymorphismTests", "PolymorphismTests\PolymorphismTests.csproj", "{8F2078C5-4B93-48BC-81E0-DA4AFEF46402}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unittestCrud", "unittestCrud", "{B2E15F0F-2D31-49BE-BD2D-D7B3ABC20799}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationExample", "WebApplicationExample\WebApplicationExample.csproj", "{946F8F94-09BC-4012-913F-0789802B595D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +47,10 @@ Global
 		{8F2078C5-4B93-48BC-81E0-DA4AFEF46402}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F2078C5-4B93-48BC-81E0-DA4AFEF46402}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F2078C5-4B93-48BC-81E0-DA4AFEF46402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{946F8F94-09BC-4012-913F-0789802B595D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{946F8F94-09BC-4012-913F-0789802B595D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{946F8F94-09BC-4012-913F-0789802B595D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{946F8F94-09BC-4012-913F-0789802B595D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +61,7 @@ Global
 		{4EBC1FA3-A0B9-40D5-BAAE-9F1FDA12EC7C} = {621ABA4C-EDD2-4826-9E33-04343A2ED62B}
 		{4A4ECE9A-B782-4F63-8611-8F3F5C84DA4D} = {0B79D59E-A32F-4E46-A6C4-3E392FDE9E0D}
 		{8F2078C5-4B93-48BC-81E0-DA4AFEF46402} = {0B79D59E-A32F-4E46-A6C4-3E392FDE9E0D}
+		{946F8F94-09BC-4012-913F-0789802B595D} = {B2E15F0F-2D31-49BE-BD2D-D7B3ABC20799}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DF5A50E-748D-4DFE-8092-89FA7470BA79}
