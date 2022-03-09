@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolymorphismTests", "Polymo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unittestCrud", "unittestCrud", "{B2E15F0F-2D31-49BE-BD2D-D7B3ABC20799}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationExample", "WebApplicationExample\WebApplicationExample.csproj", "{946F8F94-09BC-4012-913F-0789802B595D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebRepository", "WebApplicationExample\WebRepository.csproj", "{946F8F94-09BC-4012-913F-0789802B595D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRepository.Tests", "WebRepository.Tests\WebRepository.Tests.csproj", "{BE2A02BC-12E5-4ADC-92E1-BBDF02AB65BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{946F8F94-09BC-4012-913F-0789802B595D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{946F8F94-09BC-4012-913F-0789802B595D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{946F8F94-09BC-4012-913F-0789802B595D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE2A02BC-12E5-4ADC-92E1-BBDF02AB65BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2A02BC-12E5-4ADC-92E1-BBDF02AB65BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2A02BC-12E5-4ADC-92E1-BBDF02AB65BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2A02BC-12E5-4ADC-92E1-BBDF02AB65BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{4A4ECE9A-B782-4F63-8611-8F3F5C84DA4D} = {0B79D59E-A32F-4E46-A6C4-3E392FDE9E0D}
 		{8F2078C5-4B93-48BC-81E0-DA4AFEF46402} = {0B79D59E-A32F-4E46-A6C4-3E392FDE9E0D}
 		{946F8F94-09BC-4012-913F-0789802B595D} = {B2E15F0F-2D31-49BE-BD2D-D7B3ABC20799}
+		{BE2A02BC-12E5-4ADC-92E1-BBDF02AB65BF} = {B2E15F0F-2D31-49BE-BD2D-D7B3ABC20799}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DF5A50E-748D-4DFE-8092-89FA7470BA79}

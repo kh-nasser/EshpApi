@@ -5,7 +5,7 @@ namespace WebApplicationExample
 {
     public class BookStoreContext :DbContext
     {
-        public DbSet<Book> Books { get; set; }
+        public virtual DbSet<Book> Books { get; set; }
         public BookStoreContext()
         {
 
