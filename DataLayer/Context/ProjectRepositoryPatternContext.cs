@@ -10,14 +10,13 @@ namespace ProjectRepositoryPattern_DataLayer.Context
 {
     public class ProjectRepositoryPatternContext : DbContext
     {
-        public ProjectRepositoryPatternContext(DbContextOptions options) : base(options)
-        {
-
-        }
         public ProjectRepositoryPatternContext()
         {
         }
+        public ProjectRepositoryPatternContext(DbContextOptions<ProjectRepositoryPatternContext> options) : base(options)
+        {
 
+        }
         public DbSet<Person> Persons { get; set; }
        
     }
