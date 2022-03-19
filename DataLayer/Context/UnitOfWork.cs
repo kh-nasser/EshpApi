@@ -10,26 +10,26 @@ namespace ProjectRepositoryPattern_DataLayer.Context
 {
     public class UnitOfWork : IDisposable
     {
-        ProjectRepositoryPatternContext db = new ProjectRepositoryPatternContext();
+        private ProjectRepositoryPatternContext _db = new ProjectRepositoryPatternContext();
 
         #region Person
-        private MyGenericRepository<Person> personRepository;
+        private MyGenericRepository<Person> _personRepository;
         public MyGenericRepository<Person> PersonRepository
         {
             get
             {
-                if (personRepository == null)
+                if (_personRepository == null)
                 {
-                    personRepository = new MyGenericRepository<Person>(db);
+                    _personRepository = new MyGenericRepository<Person>(_db);
                 }
-                return personRepository;
+                return _personRepository;
             }
         }
         #endregion
 
         public void Dispose()
         {
-            db.Dispose();
+            _db.Dispose();
         }
     }
 }
